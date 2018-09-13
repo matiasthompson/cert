@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function(){
+        $("#button").click(function(){
+          $.ajax("http://sense-proxy-00:9290/senseTicket.php", {
+            data : JSON.stringify({
+              "ud":"AR",
+              "user":"matias.thompson",
+              "sec":"qmc"
+            }),
+            //contentType : 'application/json',
+            type : 'POST',
+            success: function(result){
+              $(window).attr('location', JSON.parse(result).ticket);
+            }});
+        });
+    });
+  </script>
+</head>
+<body>
+  <button id="button">redirigir</button>
+</body>
+</html>
